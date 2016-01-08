@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<#import "spring.ftl" as spring />
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<meta charset="utf-8" />
@@ -46,40 +47,30 @@
 							<div class="login-box-plain">
 								<h2 class="bigintro">登 陆</h2>
 								<div class="divide-40"></div>
-								<form role="form">
+								<form role="form" action="login" method="post">
 								  <div class="form-group">
 									<label for="exampleInputEmail1">用户名</label>
 									<i class="fa fa-envelope"></i>
-									<input type="email" class="form-control" id="" />
+									<input type="text" class="form-control" id="username" name="username" value="${(user.username)!}"/>
+									  <#if user??>
+										  <@spring.bind "user.username" />
+										  <@spring.showErrors "<br>"/>
+									  </#if>
 								  </div>
 								  <div class="form-group"> 
 									<label for="exampleInputPassword1">密 码</label>
 									<i class="fa fa-lock"></i>
-									<input type="password" class="form-control" id="" />
+									<input type="password" class="form-control" id="password" name="password" />
+									  <#if user??>
+										  <@spring.bind "user.password" />
+										  <@spring.showErrors "<br>"/>
+									  </#if>
 								  </div>
 								  <div class="form-actions">
 									<!--<label class="checkbox"> <input type="checkbox" class="uniform" value=""/> 记住我</label>-->
 									<button type="submit" class="btn btn-danger">登陆</button>
 								  </div>
 								</form>
-								<!-- SOCIAL LOGIN -->
-								<!--<div class="divide-20"></div>
-								<div class="center">
-									<strong>Or login using your social account</strong>
-								</div>
-								<div class="divide-20"></div>
-								<div class="social-login center">
-									<a class="btn btn-primary btn-lg">
-										<i class="fa fa-facebook"></i>
-									</a>
-									<a class="btn btn-info btn-lg">
-										<i class="fa fa-twitter"></i>
-									</a>
-									<a class="btn btn-danger btn-lg">
-										<i class="fa fa-google-plus"></i>
-									</a>
-								</div>-->
-								<!-- /SOCIAL LOGIN -->
 								<div class="login-helpers">
 									<a href="#" onclick="swapScreen('forgot');return false;">忘记密码?</a> <br/>
 									还没有账号? <a href="#" onclick="swapScreen('register');return false;">注册</a>
